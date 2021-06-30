@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-import {Container, Accordion, Card} from 'react-bootstrap';
+import {Container, Accordion, Card, Tabs, Tab} from 'react-bootstrap';
 
 function MydModalWithGrid(props) {  return (
     <Modal {...props} aria-labelledby="contained-modal-title-vcenter" scrollable="true">
@@ -14,7 +14,7 @@ function MydModalWithGrid(props) {  return (
       <Modal.Body className="show-grid">
             <Container>
                 <Accordion>
-                    <Card>
+                    <Card id="accordionId">
                         <Accordion.Toggle as={Card.Header} eventKey="0">
                         Statement of intent! (Click Here)
                         </Accordion.Toggle>
@@ -23,9 +23,10 @@ function MydModalWithGrid(props) {  return (
                         </Accordion.Collapse>
                     </Card>
                 </Accordion>
-                <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            </Container>     
+            </Container>    
+            <Container>
+                <ControlledTabs/>            
+            </Container> 
       </Modal.Body>
       <Modal.Footer>
         <h2>Modal Footer</h2>
@@ -33,6 +34,46 @@ function MydModalWithGrid(props) {  return (
     </Modal>
   );
 };
+
+function ControlledTabs() {
+  const [key, setKey] = useState('home');
+
+  return (
+    <Tabs
+      id="controlled-tab-example"
+      activeKey={key}
+      onSelect={(k) => setKey(k)}
+    >
+      <Tab eventKey="home" title="Terms of Use">
+        <Container>
+          <p class="text-left font-weight-bold">What personal information we collect</p>
+          <p class="font-weight-normal">Depending on how you engage with Cogniss Services, we collect different kinds of information from or about you.</p>
+
+          <p class="text-left font-weight-bold">Account and profile information</p>
+          <p class="font-weight-normal">We collect information about you when you register for an account ...</p>
+
+          <p class="text-left font-weight-bold">Information you provide to us</p>
+          <p class="font-weight-normal">We collect and store any content that you create, post, send ...</p>
+        </Container>
+      </Tab>
+      <Tab eventKey="profile" title="Privacy Policy">
+        <Container>
+          <p class="text-left font-weight-bold">Privacy Policy</p>
+          <p class="text-left font-weight-bold">What personal information we collect</p>
+          <p class="font-weight-normal">Depending on how you engage with Cogniss Services, we collect different kinds of information from or about you.</p>
+
+          <p class="text-left font-weight-bold">Account and profile information</p>
+          <p class="font-weight-normal">We collect information about you when you register for an account ...</p>
+
+          <p class="text-left font-weight-bold">Information you provide to us</p>
+          <p class="font-weight-normal">We collect and store any content that you create, post, send ...</p>
+        </Container>      
+      </Tab>
+    </Tabs>
+  );
+};
+
+
 
 export const Example = () => {
   const [modalShow, setModalShow] = useState(false);
