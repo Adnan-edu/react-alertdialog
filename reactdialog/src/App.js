@@ -1,10 +1,12 @@
 
 import './App.css';
+import { Example } from "./myexample";
+
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello hello</h1>
+      <Example/>
     </div>
   );
 }
