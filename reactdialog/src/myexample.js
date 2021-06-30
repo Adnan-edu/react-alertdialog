@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-
-import {Container, Accordion, Card, Tabs, Tab, Form} from 'react-bootstrap';
+import {Button, Modal, Container, Accordion, Card, Tabs, Tab, Form} from 'react-bootstrap';
 
 function MydModalWithGrid(props) {
     const [accept, setAccept] = useState(true)
