@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-import {Container, Accordion, Card, Tabs, Tab} from 'react-bootstrap';
+import {Container, Accordion, Card, Tabs, Tab, Form} from 'react-bootstrap';
 
-function MydModalWithGrid(props) {  return (
+function MydModalWithGrid(props) {
+    const [accept, setAccept] = useState(true)
+    return (
     <Modal {...props} aria-labelledby="contained-modal-title-vcenter" scrollable="true">
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
@@ -29,7 +31,15 @@ function MydModalWithGrid(props) {  return (
             </Container> 
       </Modal.Body>
       <Modal.Footer>
-        <h2>Modal Footer</h2>
+        <Container>
+          <Form>
+            <Form.Group>
+              <Form.Check type="checkbox" onChange={e=>{ setAccept(!accept); console.log(accept);}} label="I have read and agree to the Terms and Privacy Policy"/>
+            </Form.Group>
+          </Form> 
+        </Container>
+          <Button onClick={props.onHide}>Cancel</Button>
+          <Button onClick={props.onHide} disabled={accept}>Accept</Button> 
       </Modal.Footer>
     </Modal>
   );
